@@ -1,64 +1,172 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">My Portfolio</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#about">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#projects">Projects</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#contact">Contact</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+---
+layout: default
+title: Home
+---
 
+<!-- Hero Section -->
+<section class="hero-section">
     <div class="container">
-        <section id="about" class="mt-5">
-            <h2>About Me</h2>
-            <p>Introduce yourself here.</p>
-        </section>
-
-        <section id="projects" class="mt-5">
-            <h2>Projects</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Project 1</h5>
-                            <p class="card-text">Description of the project.</p>
-                        </div>
-                    </div>
+        <div class="row align-items-center">
+            <div class="col-lg-8 hero-content">
+                <h1>Welcome to My Blog</h1>
+                <p class="lead">Sharing insights on technology, development, and everything in between.</p>
+                <div class="mt-4">
+                    <a href="{{ '/blog.html' | relative_url }}" class="btn btn-primary btn-lg me-3">Read Blog</a>
+                    <a href="{{ '/about.html' | relative_url }}" class="btn btn-outline-light btn-lg">About Me</a>
                 </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Project 2</h5>
-                            <p class="card-text">Description of the project.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Posts Section -->
+<section class="py-5" style="margin-top: 80px;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Latest Posts</h2>
+            <p class="text-muted">Check out my recent articles and tutorials</p>
+        </div>
+
+        <div class="row g-4">
+            {% assign latest_posts = site.posts | slice: 0, 3 %}
+            {% for post in latest_posts %}
+            <div class="col-md-4">
+                <div class="card blog-card animate-on-scroll">
+                    {% if post.image %}
+                    <img src="{{ post.image | relative_url }}" class="card-img-top" alt="{{ post.title }}">
+                    {% else %}
+                    <img src="https://via.placeholder.com/400x220/667eea/ffffff?text={{ post.title | truncate: 20 | url_encode }}" class="card-img-top" alt="{{ post.title }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <div class="blog-meta">
+                            <span>
+                                <i class="fas fa-calendar"></i>
+                                {{ post.date | date: "%b %d, %Y" }}
+                            </span>
+                            <span>
+                                <i class="fas fa-clock"></i>
+                                5 min read
+                            </span>
                         </div>
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+                        {% if post.tags %}
+                        <div class="mb-3">
+                            {% for tag in post.tags limit:2 %}
+                            <span class="badge bg-secondary">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        <a href="{{ post.url | relative_url }}" class="read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
             </div>
-        </section>
+            {% endfor %}
 
-        <section id="contact" class="mt-5">
-            <h2>Contact</h2>
-            <p>Include your contact info.</p>
-        </section>
+            {% if site.posts.size == 0 %}
+            <!-- Sample Cards if no posts exist -->
+            <div class="col-md-4">
+                <div class="card blog-card">
+                    <img src="https://via.placeholder.com/400x220/667eea/ffffff?text=Getting+Started" class="card-img-top" alt="Getting Started">
+                    <div class="card-body">
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> Jan 15, 2025</span>
+                            <span><i class="fas fa-clock"></i> 5 min read</span>
+                        </div>
+                        <h5 class="card-title">Getting Started with Web Development</h5>
+                        <p class="card-text">Learn the fundamentals of web development and start building amazing websites.</p>
+                        <div class="mb-3">
+                            <span class="badge bg-secondary">Web Dev</span>
+                            <span class="badge bg-secondary">Tutorial</span>
+                        </div>
+                        <a href="#" class="read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card blog-card">
+                    <img src="https://via.placeholder.com/400x220/764ba2/ffffff?text=JavaScript+Tips" class="card-img-top" alt="JavaScript Tips">
+                    <div class="card-body">
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> Jan 10, 2025</span>
+                            <span><i class="fas fa-clock"></i> 7 min read</span>
+                        </div>
+                        <h5 class="card-title">10 JavaScript Tips Every Developer Should Know</h5>
+                        <p class="card-text">Master these essential JavaScript techniques to write cleaner, more efficient code.</p>
+                        <div class="mb-3">
+                            <span class="badge bg-secondary">JavaScript</span>
+                            <span class="badge bg-secondary">Tips</span>
+                        </div>
+                        <a href="#" class="read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card blog-card">
+                    <img src="https://via.placeholder.com/400x220/f59e0b/ffffff?text=CSS+Grid" class="card-img-top" alt="CSS Grid">
+                    <div class="card-body">
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> Jan 5, 2025</span>
+                            <span><i class="fas fa-clock"></i> 6 min read</span>
+                        </div>
+                        <h5 class="card-title">Mastering CSS Grid Layout</h5>
+                        <p class="card-text">A comprehensive guide to creating responsive layouts with CSS Grid.</p>
+                        <div class="mb-3">
+                            <span class="badge bg-secondary">CSS</span>
+                            <span class="badge bg-secondary">Design</span>
+                        </div>
+                        <a href="#" class="read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="text-center mt-5">
+            <a href="{{ '/blog.html' | relative_url }}" class="btn btn-primary">View All Posts</a>
+        </div>
     </div>
-</body>
-</html>
+</section>
+
+<!-- About Preview Section -->
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <img src="https://via.placeholder.com/500x500/667eea/ffffff?text=Your+Photo" alt="Profile" class="img-fluid rounded shadow">
+            </div>
+            <div class="col-lg-6">
+                <h2 class="mb-4">About Me</h2>
+                <p class="lead">Hi! I'm a passionate developer and tech enthusiast.</p>
+                <p>I love sharing my knowledge and experiences through writing. On this blog, you'll find articles about web development, programming, and technology trends.</p>
+                <a href="{{ '/about.html' | relative_url }}" class="btn btn-primary mt-3">Learn More About Me</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 text-center">
+                <h2 class="mb-4">Stay Updated</h2>
+                <p class="text-muted mb-4">Subscribe to get notified about new posts and updates</p>
+                <form class="d-flex gap-2">
+                    <input type="email" class="form-control form-control-lg" placeholder="Enter your email" required>
+                    <button type="submit" class="btn btn-primary btn-lg">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

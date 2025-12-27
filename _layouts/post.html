@@ -1,0 +1,102 @@
+---
+layout: default
+---
+
+<div class="post-header">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="post-title">{{ page.title }}</h1>
+                <div class="blog-meta">
+                    <span>
+                        <i class="fas fa-calendar"></i>
+                        {{ page.date | date: "%B %d, %Y" }}
+                    </span>
+                    <span>
+                        <i class="fas fa-clock"></i>
+                        <span class="reading-time"></span>
+                    </span>
+                    {% if page.author %}
+                    <span>
+                        <i class="fas fa-user"></i>
+                        {{ page.author }}
+                    </span>
+                    {% endif %}
+                </div>
+                {% if page.tags %}
+                <div class="mt-3">
+                    {% for tag in page.tags %}
+                    <span class="badge bg-primary">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="post-content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                {% if page.image %}
+                <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="img-fluid mb-4">
+                {% endif %}
+
+                {{ content }}
+
+                {% if page.tags %}
+                <div class="mt-5 pt-4 border-top">
+                    <h5>Tags:</h5>
+                    {% for tag in page.tags %}
+                    <a href="{{ '/blog.html' | relative_url }}?tag={{ tag | slugify }}" class="badge bg-secondary text-decoration-none me-2">
+                        {{ tag }}
+                    </a>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <div class="mt-5 pt-4 border-top">
+                    <div class="row">
+                        <div class="col-md-6">
+                            {% if page.previous.url %}
+                            <a href="{{ page.previous.url | relative_url }}" class="text-decoration-none">
+                                <i class="fas fa-arrow-left"></i> Previous Post
+                                <br>
+                                <small>{{ page.previous.title }}</small>
+                            </a>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 text-end">
+                            {% if page.next.url %}
+                            <a href="{{ page.next.url | relative_url }}" class="text-decoration-none">
+                                Next Post <i class="fas fa-arrow-right"></i>
+                                <br>
+                                <small>{{ page.next.title }}</small>
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-5 pt-4 border-top text-center">
+                    <h5>Share this post</h5>
+                    <div class="social-links justify-content-center mt-3">
+                        <a href="https://twitter.com/intent/tweet?text={{ page.title }}&url={{ page.url | absolute_url }}" target="_blank" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url }}" target="_blank" class="social-link">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ page.url | absolute_url }}&title={{ page.title }}" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:?subject={{ page.title }}&body=Check out this post: {{ page.url | absolute_url }}" class="social-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

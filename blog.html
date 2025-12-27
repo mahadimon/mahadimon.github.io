@@ -1,0 +1,201 @@
+---
+layout: default
+title: Blog
+---
+
+<div style="margin-top: 80px;"></div>
+
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h1 class="section-title">Blog Posts</h1>
+            <p class="text-muted">Explore articles on development, technology, and more</p>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-6">
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text bg-white">
+                        <i class="fas fa-search"></i>
+                    </span>
+                    <input type="text" class="form-control" id="search-input" placeholder="Search posts...">
+                </div>
+            </div>
+        </div>
+
+        <!-- Blog Posts Grid -->
+        <div class="row g-4" id="blog-posts">
+            {% for post in site.posts %}
+            <div class="col-md-4">
+                <div class="card blog-card">
+                    {% if post.image %}
+                    <img src="{{ post.image | relative_url }}" class="card-img-top" alt="{{ post.title }}">
+                    {% else %}
+                    <img src="https://via.placeholder.com/400x220/667eea/ffffff?text={{ post.title | truncate: 20 | url_encode }}" class="card-img-top" alt="{{ post.title }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <div class="blog-meta">
+                            <span>
+                                <i class="fas fa-calendar"></i>
+                                {{ post.date | date: "%b %d, %Y" }}
+                            </span>
+                            <span>
+                                <i class="fas fa-clock"></i>
+                                5 min read
+                            </span>
+                        </div>
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+                        {% if post.tags %}
+                        <div class="mb-3">
+                            {% for tag in post.tags limit:3 %}
+                            <span class="badge bg-secondary">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        <a href="{{ post.url | relative_url }}" class="read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% if site.posts.size == 0 %}
+            <!-- Sample Posts if none exist -->
+            <div class="col-md-4">
+                <div class="card blog-card">
+                    <img src="https://via.placeholder.com/400x220/667eea/ffffff?text=Sample+Post+1" class="card-img-top" alt="Sample Post 1">
+                    <div class="card-body">
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> Jan 20, 2025</span>
+                            <span><i class="fas fa-clock"></i> 5 min read</span>
+                        </div>
+                        <h5 class="card-title">Building Modern Web Applications</h5>
+                        <p class="card-text">Learn how to build scalable and performant web applications using modern frameworks and tools.</p>
+                        <div class="mb-3">
+                            <span class="badge bg-secondary">Web Dev</span>
+                            <span class="badge bg-secondary">Tutorial</span>
+                        </div>
+                        <a href="#" class="read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card blog-card">
+                    <img src="https://via.placeholder.com/400x220/764ba2/ffffff?text=Sample+Post+2" class="card-img-top" alt="Sample Post 2">
+                    <div class="card-body">
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> Jan 18, 2025</span>
+                            <span><i class="fas fa-clock"></i> 7 min read</span>
+                        </div>
+                        <h5 class="card-title">Understanding Async JavaScript</h5>
+                        <p class="card-text">Deep dive into asynchronous programming in JavaScript with promises and async/await.</p>
+                        <div class="mb-3">
+                            <span class="badge bg-secondary">JavaScript</span>
+                            <span class="badge bg-secondary">Advanced</span>
+                        </div>
+                        <a href="#" class="read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card blog-card">
+                    <img src="https://via.placeholder.com/400x220/f59e0b/ffffff?text=Sample+Post+3" class="card-img-top" alt="Sample Post 3">
+                    <div class="card-body">
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> Jan 15, 2025</span>
+                            <span><i class="fas fa-clock"></i> 6 min read</span>
+                        </div>
+                        <h5 class="card-title">Responsive Design Best Practices</h5>
+                        <p class="card-text">Essential techniques and patterns for creating responsive websites that work on all devices.</p>
+                        <div class="mb-3">
+                            <span class="badge bg-secondary">CSS</span>
+                            <span class="badge bg-secondary">Design</span>
+                        </div>
+                        <a href="#" class="read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card blog-card">
+                    <img src="https://via.placeholder.com/400x220/10b981/ffffff?text=Sample+Post+4" class="card-img-top" alt="Sample Post 4">
+                    <div class="card-body">
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> Jan 12, 2025</span>
+                            <span><i class="fas fa-clock"></i> 8 min read</span>
+                        </div>
+                        <h5 class="card-title">Introduction to Git and GitHub</h5>
+                        <p class="card-text">Master version control with Git and learn how to collaborate effectively using GitHub.</p>
+                        <div class="mb-3">
+                            <span class="badge bg-secondary">Git</span>
+                            <span class="badge bg-secondary">Tools</span>
+                        </div>
+                        <a href="#" class="read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card blog-card">
+                    <img src="https://via.placeholder.com/400x220/ef4444/ffffff?text=Sample+Post+5" class="card-img-top" alt="Sample Post 5">
+                    <div class="card-body">
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> Jan 8, 2025</span>
+                            <span><i class="fas fa-clock"></i> 5 min read</span>
+                        </div>
+                        <h5 class="card-title">React Hooks Explained</h5>
+                        <p class="card-text">Comprehensive guide to using React Hooks for state management and side effects.</p>
+                        <div class="mb-3">
+                            <span class="badge bg-secondary">React</span>
+                            <span class="badge bg-secondary">Tutorial</span>
+                        </div>
+                        <a href="#" class="read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card blog-card">
+                    <img src="https://via.placeholder.com/400x220/8b5cf6/ffffff?text=Sample+Post+6" class="card-img-top" alt="Sample Post 6">
+                    <div class="card-body">
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> Jan 5, 2025</span>
+                            <span><i class="fas fa-clock"></i> 10 min read</span>
+                        </div>
+                        <h5 class="card-title">Building RESTful APIs</h5>
+                        <p class="card-text">Learn the fundamentals of designing and implementing RESTful APIs with Node.js.</p>
+                        <div class="mb-3">
+                            <span class="badge bg-secondary">Node.js</span>
+                            <span class="badge bg-secondary">API</span>
+                        </div>
+                        <a href="#" class="read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        {% if site.posts.size == 0 %}
+        <div class="alert alert-info mt-5 text-center" role="alert">
+            <i class="fas fa-info-circle"></i> These are sample posts. Create your own posts in the <code>_posts</code> directory!
+        </div>
+        {% endif %}
+    </div>
+</section>

@@ -1,0 +1,174 @@
+---
+layout: default
+title: Contact
+---
+
+<div style="margin-top: 80px;"></div>
+
+<section class="contact-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h1 class="section-title">Get In Touch</h1>
+            <p class="lead text-muted">Have a question or want to work together? I'd love to hear from you.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="contact-form">
+                    <form id="contact-form">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="name" class="form-label">Name *</label>
+                                <input type="text" class="form-control form-control-lg" id="name" name="name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email *</label>
+                                <input type="email" class="form-control form-control-lg" id="email" name="email" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="subject" class="form-label">Subject *</label>
+                                <input type="text" class="form-control form-control-lg" id="subject" name="subject" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="message" class="form-label">Message *</label>
+                                <textarea class="form-control form-control-lg" id="message" name="message" rows="6" required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-paper-plane me-2"></i> Send Message
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="contact-info">
+                    <h4 class="mb-4">Contact Information</h4>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-1">Email</h6>
+                            <a href="mailto:your.email@example.com" class="text-decoration-none">
+                                your.email@example.com
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-1">Location</h6>
+                            <p class="text-muted mb-0">City, Country</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-1">Response Time</h6>
+                            <p class="text-muted mb-0">Within 24-48 hours</p>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <h5 class="mb-3">Follow Me</h5>
+                    <div class="social-links">
+                        <a href="https://github.com/yourusername" target="_blank" class="social-link" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://twitter.com/yourusername" target="_blank" class="social-link" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/yourusername" target="_blank" class="social-link" title="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://dev.to/yourusername" target="_blank" class="social-link" title="Dev.to">
+                            <i class="fab fa-dev"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item mb-3 border-0 shadow-sm">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                What topics do you write about?
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                I primarily write about web development, JavaScript, React, Node.js, and general programming topics.
+                                I also share insights about software architecture, best practices, and career advice for developers.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item mb-3 border-0 shadow-sm">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                Are you available for freelance work?
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Yes! I'm open to discussing freelance opportunities. Please use the contact form above to reach out
+                                with details about your project, and I'll get back to you as soon as possible.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item mb-3 border-0 shadow-sm">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                Can I republish your articles?
+                            </button>
+                        </h2>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Please contact me if you'd like to republish any of my content. I'm generally open to it with
+                                proper attribution and a link back to the original article.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item mb-3 border-0 shadow-sm">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                Do you offer mentoring or consulting?
+                            </button>
+                        </h2>
+                        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Yes, I offer both mentoring and technical consulting services. Reach out via the contact form
+                                to discuss your needs and we can arrange a suitable schedule.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

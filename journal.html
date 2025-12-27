@@ -1,0 +1,197 @@
+---
+layout: default
+title: Daily Journal
+---
+
+<div style="margin-top: 80px;"></div>
+
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h1 class="section-title" style="color: var(--accent-color);">
+                <i class="fas fa-book-open"></i> Daily Journal
+            </h1>
+            <p class="lead text-muted">My personal space for daily reflections, thoughts, and experiences</p>
+        </div>
+
+        <!-- Journal Entries Timeline -->
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="journal-timeline">
+                    {% assign journal_entries = site.journal | sort: 'date' | reverse %}
+
+                    {% for entry in journal_entries %}
+                    <div class="journal-card mb-4">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-start">
+                                    <div class="journal-date-badge me-4">
+                                        <div class="date-day">{{ entry.date | date: "%d" }}</div>
+                                        <div class="date-month">{{ entry.date | date: "%b" }}</div>
+                                        <div class="date-year">{{ entry.date | date: "%Y" }}</div>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h4 class="card-title mb-2">
+                                            <a href="{{ entry.url | relative_url }}" class="text-decoration-none text-dark">
+                                                {{ entry.title }}
+                                            </a>
+                                        </h4>
+                                        <div class="blog-meta mb-3">
+                                            <span>
+                                                <i class="fas fa-calendar"></i>
+                                                {{ entry.date | date: "%A, %B %d, %Y" }}
+                                            </span>
+                                            {% if entry.mood %}
+                                            <span>
+                                                <i class="fas fa-smile"></i>
+                                                {{ entry.mood }}
+                                            </span>
+                                            {% endif %}
+                                        </div>
+                                        <p class="card-text text-muted">
+                                            {{ entry.excerpt | strip_html | truncate: 200 }}
+                                        </p>
+                                        <a href="{{ entry.url | relative_url }}" class="read-more">
+                                            Read Full Entry <i class="fas fa-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    {% if site.journal.size == 0 %}
+                    <!-- Sample entries if none exist -->
+                    <div class="journal-card mb-4">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-start">
+                                    <div class="journal-date-badge me-4">
+                                        <div class="date-day">20</div>
+                                        <div class="date-month">Jan</div>
+                                        <div class="date-year">2025</div>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h4 class="card-title mb-2">First Day of Journaling</h4>
+                                        <div class="blog-meta mb-3">
+                                            <span>
+                                                <i class="fas fa-calendar"></i>
+                                                Monday, January 20, 2025
+                                            </span>
+                                            <span>
+                                                <i class="fas fa-smile"></i>
+                                                Excited
+                                            </span>
+                                        </div>
+                                        <p class="card-text text-muted">
+                                            Today marks the beginning of my daily journaling journey. I'm excited to document my thoughts, experiences, and growth as a developer...
+                                        </p>
+                                        <a href="#" class="read-more">
+                                            Read Full Entry <i class="fas fa-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="journal-card mb-4">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-start">
+                                    <div class="journal-date-badge me-4">
+                                        <div class="date-day">19</div>
+                                        <div class="date-month">Jan</div>
+                                        <div class="date-year">2025</div>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h4 class="card-title mb-2">Learning New Things</h4>
+                                        <div class="blog-meta mb-3">
+                                            <span>
+                                                <i class="fas fa-calendar"></i>
+                                                Sunday, January 19, 2025
+                                            </span>
+                                            <span>
+                                                <i class="fas fa-smile"></i>
+                                                Productive
+                                            </span>
+                                        </div>
+                                        <p class="card-text text-muted">
+                                            Spent most of the day diving deep into React hooks. It's amazing how much cleaner code becomes when you understand the right patterns...
+                                        </p>
+                                        <a href="#" class="read-more">
+                                            Read Full Entry <i class="fas fa-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info mt-4" role="alert">
+                        <i class="fas fa-info-circle"></i> These are sample journal entries. Create your own entries in the <code>_journal</code> directory!
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.journal-timeline {
+    position: relative;
+}
+
+.journal-card {
+    animation: fadeIn 0.5s ease;
+}
+
+.journal-date-badge {
+    background: linear-gradient(135deg, var(--accent-color), #ef4444);
+    color: white;
+    padding: 1rem;
+    border-radius: 12px;
+    text-align: center;
+    min-width: 80px;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+}
+
+.date-day {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.date-month {
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.date-year {
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+.journal-card .card {
+    transition: all 0.3s ease;
+}
+
+.journal-card .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+}
+
+@media (max-width: 768px) {
+    .journal-date-badge {
+        min-width: 60px;
+        padding: 0.75rem;
+    }
+
+    .date-day {
+        font-size: 1.5rem;
+    }
+}
+</style>
